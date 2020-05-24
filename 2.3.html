@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body onload="docReady()" onkeydown="" onkeyup="">
+    <canvas id="cnv" width="1000" height="500">
+        
+    </canvas>
+    <script type="text/javascript">
+        var canvas = document.getElementById("cnv");
+        var ctx = canvas.getContext("2d");
+        var x=0,y=0;
+        ctx.fillStyle = "#FF0000";
+        ctx.fillRect(x+100,+y+100,100,150);
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(x+80,y+95,20,160);
+        ctx.fillRect(x+200,y+95,20,160);
+        ctx.fillStyle = "#00FF00";
+        ctx.fillRect(x+110,y+130,80,90);
+        ctx.fillRect(x+145,y+30,10,100);
+        
+        function leftArrowPressed() {
+            x-=5;
+            ctx.clearRect(0,0,1500,1500);
+            ctx.fillStyle = "#FF0000";
+            ctx.fillRect(x+100,y+100,150,100);
+            ctx.fillStyle = "#000000";
+            ctx.fillRect(x+95,y+80,160,20);
+            ctx.fillRect(x+95,y+200,160,20);
+            ctx.fillStyle = "#00FF00";
+            ctx.fillRect(x+130,y+110,90,80);
+            ctx.fillRect(x+30,y+145,100,10);
+            }
+
+            function rightArrowPressed() {
+            x+=5;
+            ctx.clearRect(0,0,1500,1500);
+            ctx.fillStyle = "#FF0000";
+            ctx.fillRect(x+10,y+100,150,100);
+            ctx.fillStyle = "#000000";
+            ctx.fillRect(x+5,y+80,160,20);
+            ctx.fillRect(x+5,y+200,160,20);
+            ctx.fillStyle = "#00FF00";
+            ctx.fillRect(x+130-90,y+110,90,80);
+            ctx.fillRect(x+30+100,y+145,100,10);
+            }
+
+            function upArrowPressed() {
+            y-=5;
+            ctx.clearRect(0,0,1500,1500);
+            ctx.fillStyle = "#FF0000";
+            ctx.fillRect(x+100,y+100,100,150);
+            ctx.fillStyle = "#000000";
+            ctx.fillRect(x+80,y+95,20,160);
+            ctx.fillRect(x+200,y+95,20,160);
+            ctx.fillStyle = "#00FF00";
+            ctx.fillRect(x+110,y+130,80,90);
+            ctx.fillRect(x+145,y+30,10,100);
+            }
+
+            function downArrowPressed() {
+            y+=5;
+            ctx.clearRect(0,0,1500,1500);
+            ctx.fillStyle = "#FF0000";
+            ctx.fillRect(x+100,y+10,100,150);
+            ctx.fillStyle = "#000000";
+            ctx.fillRect(x+80,y+5,20,160);
+            ctx.fillRect(x+200,y+5,20,160);
+            ctx.fillStyle = "#00FF00";
+            ctx.fillRect(x+110,y+130-90,80,90);
+            ctx.fillRect(x+145,y+30+90,10,100);
+            }
+
+            function moveSelection(evt) {
+                switch (evt.keyCode) {
+                    case 37:
+                    leftArrowPressed();
+                    break;
+                    case 39:
+                    rightArrowPressed();
+                    break;
+                    case 38:
+                    upArrowPressed();
+                    break;
+                    case 40:
+                    downArrowPressed();
+                    break;
+                    }
+                };
+
+        function docReady()
+        {
+          window.addEventListener('keydown', moveSelection);
+        }
+    </script>
+</body>
+</html>

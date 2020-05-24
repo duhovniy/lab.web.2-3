@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var FullDate = function(day,month,year){
+            this.day = day;
+            this.month = month;
+            this.year = year;
+        }
+        FullDate.prototype.isLeap = function(){
+            return this.year%4===0?true:false;
+        }
+        FullDate.prototype.equalDayMonth = function(){
+            return this.day===this.month?true:false;
+        }
+        FullDate.prototype.toString = function(){
+            return "day: "+this.day+"\nmonth: "+this.month+"\nyear: "+this.year;
+        }
+        FullDate.prototype.setDay = function(){
+            var temp = prompt("Input day: ");
+            if(temp<1||temp>31){
+                alert("Wrong day entered.");
+                return false;
+            }
+            else{
+                this.day = temp;
+                return true;
+            }
+        }
+        FullDate.prototype.setMonth = function(){
+            var temp = prompt("Input month: ");
+            if(temp<1||temp>31){
+                alert("Wrong month entered.");
+                return false;
+            }
+            else{
+                this.month = temp;
+                return true;
+            }
+        }
+        FullDate.prototype.setYear = function(){
+            var temp = prompt("Input year: ");
+            if(temp<1900||temp>2100){
+                alert("Wrong year entered.");
+                return false;
+            }
+            else{
+                this.year = temp;
+                return true;
+            }
+        }
+        var FriendList = function(name,phone){
+            this.name = name;
+            this.phone = phone;
+            this.dateOfBirth = new FullDate();
+        }
+        FriendList.prototype.daysLeft = function(){
+            var dat = new Date();
+            return Math.abs(dat.getDate()-this.dateOfBirth.day)+30*Math.abs(dat.getMonth()+1-this.dateOfBirth.month);
+        }
+        FriendList.prototype.toString = function(){
+            return "name: "+this.name+"\nphone: "+this.phone+"\ndate of birth: "+this.dateOfBirth.toString();
+        }
+        var l1 = new FriendList("sashka shliapik","+4202281488");
+        l1.dateOfBirth.setDay();
+        l1.dateOfBirth.setMonth();
+        l1.dateOfBirth.setYear();
+        document.write(l1.toString());
+        document.write("<br>");
+        document.write(l1.daysLeft());
+    </script>
+</body>
+</html>

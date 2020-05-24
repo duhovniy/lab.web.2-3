@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var Matrix = function(){}
+        Matrix.prototype.init = function(rows, cols){
+            this.rows = rows;
+            this.cols = cols;
+        }
+        Matrix.prototype.initMatrix = function(){
+            this.matrix = new Array(this.rows);
+            for(var i=0;i<this.rows;i++){
+                var temp = new Array(this.cols);
+                for(var j=0;j<this.cols;j++){
+                    temp[j] = Math.round(Math.random()*20+1);
+                    document.write(temp[j]+"&nbsp;&nbsp;&nbsp;");
+                }
+                document.write("</br>");
+                this.matrix[i] = temp;
+            }
+        }
+        Matrix.prototype.getEl = function(row,col){
+            return this.matrix[row][col];
+        }
+        Matrix.prototype.print = function(){
+            for(var i=0;i<this.rows;i++){
+                for(var j=0;j<this.cols;j++){
+                    document.write(this.matrix[i][j]+"&nbsp;&nbsp;&nbsp;");
+                }
+                document.write("</br>");
+            }
+        }
+        Matrix.prototype.addM = function(matrix){
+            if(this.rows!==matrix.rows||this.cols!==matrix.cols){
+                document.write("Розміри матриць не співпадають");
+                return null;
+            }
+            var matr = new Matrix();
+            matr.init(this.rows,this.cols);
+            matr.matrix = new Array(this.rows);
+            for(var i=0;i<this.rows;i++){
+                matr.matrix[i] = new Array(this.cols);
+                for(var j=0;j<this.cols;j++){
+                    matr.matrix[i][j] = this.matrix[i][j]+matrix.matrix[i][j];
+                }
+            }
+            return matr;
+        }
+        Matrix.prototype.subM = function(matrix){
+            if(this.rows!==matrix.rows||this.cols!==matrix.cols){
+                document.write("Розміри матриць не співпадають");
+                return null;
+            }
+            var matr = new Matrix();
+            matr.init(this.rows,this.cols);
+            matr.matrix = new Array(this.rows);
+            for(var i=0;i<this.rows;i++){
+                matr.matrix[i] = new Array(this.cols);
+                for(var j=0;j<this.cols;j++){
+                    matr.matrix[i][j] = this.matrix[i][j]-matrix.matrix[i][j];
+                }
+            }
+            return matr;
+        }
+        Matrix.prototype.mulNum = function(num){
+            var matr = new Matrix();
+            matr.init(this.rows,this.cols);
+            matr.matrix = new Array(this.rows);
+            for(var i=0;i<this.rows;i++){
+                matr.matrix[i] = new Array(this.cols);
+                for(var j=0;j<this.cols;j++){
+                    matr.matrix[i][j] = this.matrix[i][j]*num;
+                }
+            }
+            return matr;
+        }
+        Matrix.prototype.mulM = function(matrix){
+            if(this.cols!==matrix.rows){
+                document.write("Розміри матриць не співпадають");
+                return null;
+            }
+            var aNumRows = this.rows, aNumCols = this.cols,
+            bNumRows = matrix.rows, bNumCols = matrix.cols;
+            var matr = new Matrix();
+            matr.init(aNumRows,bNumCols);
+            matr.matrix = new Array(aNumRows);
+            for (var r = 0; r < aNumRows; ++r) {
+                matr.matrix[r] = new Array(bNumCols);
+                for (var c = 0; c < bNumCols; ++c) {
+                    matr.matrix[r][c] = 0;             
+                    for (var i = 0; i < aNumCols; ++i) {
+                        matr.matrix[r][c] += this.matrix[r][i] * matrix.matrix[i][c];
+                    }
+                }
+            }
+            return matr;
+        }
+        var m1 = new Matrix();
+        m1.init(5,5);
+        m1.initMatrix();
+        document.write("</br>");
+        var m2 = new Matrix();
+        m2.init(5,5);
+        m2.initMatrix();
+        document.write("</br>");
+        m1.addM(m2).print();
+        document.write("</br>");
+        m1.subM(m2).print();
+        document.write("</br>");
+        m1.mulNum(3).print();
+        document.write("</br>");
+        m1.mulM(m2).print();
+        document.write("</br>");
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>$( function() {
+        $( "#accordion" ).accordion();
+      } );
+      $( function() {
+    var availableTags = [
+      "Hello world",
+      "Hello there",
+      "General Kenobi",
+      "name",
+      "nation",
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  $( function() {
+    $( ".widget input[type=submit], .widget a, .widget button" ).button();
+    $( "button, input, a" ).click( function( event ) {
+      event.preventDefault();
+      alert("button clicked");
+    } );
+  } );
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <button id="show">show</button>
+    <button id="hide">hide</button>
+    <div align="center" id="test">Hello</div>
+    <div align="right" id="test">there</div>
+    <p class="text">text1</p>
+    <p class="text">text2</p>
+    <p class="text">text3</p>
+    <a href="">link1</a><br>
+    <a href="">link2</a><br>
+    <a href="">link3</a><br>
+    <div id="accordion">
+        <h3>Section 1</h3>
+  <div>
+    <p>
+    Text of first section.
+    </p>
+  </div>
+  <h3>Section 2</h3>
+  <div>
+    <p>
+    Text of second section.
+    </p>
+  </div>
+  <h3>Section 3</h3>
+  <div>
+    <p>
+    Text of third section.
+    </p>
+  </div>
+  <h3>Section 4</h3>
+  <div>
+    <p>
+    Text of fourth section.
+    </p>
+  </div>
+    </div>
+    <div class="widget">
+        <h3>Widget Buttons</h3>
+        <button>A button</button>
+    </div>
+    <div class="ui-widget">
+        <label for="tags">Tags: </label>
+        <input id="tags">
+    </div>
+    <script>
+        $("#show").click(function(){$("#test").show()});
+        $("#hide").click(function(){$("#test").hide()});
+        $("[align=center]").dblclick(function(){$(this).toggle()});
+        $("p.text").hide();
+        $(window).resize(function(){$("[href]").toggle();$("p.text").toggle();});
+    </script>
+</body>
+</html>
